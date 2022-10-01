@@ -14,17 +14,23 @@ getImageButton.addEventListener('click', getMatchingCatsArray);
 
 function getMatchingCatsArray() {
 
-    if (isGif.checked) {
-        console.log('Gif only')
-    } else {
-        console.log('all meme')
-    }
-
     if (document.querySelector('input[type="radio"]:checked')) {
         const checkedRadioInput = document.querySelector('input[type="radio"]:checked').value
-        console.log(checkedRadioInput);
-    } else {
+        
+        
+            let MatchingCatsEmotionArray = catsData.filter(catEmotion => {
+                if (isGif.checked) {
+                    return catEmotion.emotionTags.includes(checkedRadioInput)&& catEmotion.isGif === true
+            } else {
+                        return catEmotion.emotionTags.includes(checkedRadioInput)
+                    }
+            })
+            
+          
 
+       
+
+        return MatchingCatsEmotionArray
     }
 }
 
